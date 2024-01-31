@@ -5,30 +5,22 @@ import {
   Home,
   Profile,
   ProtectedRoute,
-  RootLayout,
   SignInPage,
-  SignUpPage,
 } from './pages/_index';
 function App() {
   return (
     <main>
       <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route
-            path='/sign-in'
-            element={<SignInPage />}
-          />
-          <Route
-            path='/sign-up'
-            element={<SignUpPage />}
-          />
-        </Route>
+        <Route
+          path='/sign-in'
+          element={<SignInPage />}
+        />
 
         <Route
           path='/'
-          element={<RootLayout />}>
+          element={<ProtectedRoute />}>
           <Route
-            path='/home'
+            index
             element={<Home />}
           />
           <Route

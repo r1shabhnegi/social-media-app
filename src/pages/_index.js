@@ -1,7 +1,6 @@
 // Protected Layout and Pages
 export { default as ProtectedRoute } from './auth/ProtectedRoute';
 export { default as SignInPage } from './auth/SignInPage';
-export { default as SignUpPage } from './auth/SignUpPage';
 
 // Root Layout and Pages
 export { default as RootLayout } from './RootLayout';
