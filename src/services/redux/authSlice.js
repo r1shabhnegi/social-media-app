@@ -1,10 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getCurrentUser } from '../appwrite/api';
 
-// const fetchUserInfo = createAsyncThunk('');
+export const fetchAuth = createAsyncThunk('fetch/auth', async () => {
+  try {
+    const userData = await getCurrentUser();
+    console.log(userData);
+    return userData;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const initialState = {
   authStatus: false,
-  userData: [],
+  userData: {},
   status: 'rejected',
 };
 
@@ -19,7 +28,27 @@ export const authSlice = createSlice({
       state.userData = action.payload;
     },
   },
-  //   extraReducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAuth.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchAuth.fulfilled, (state, { payload }) => {
+        state.status = 'success';
+        state.userData = {
+          name: payload.name,
+          username: payload.username,
+          email: payload.email,
+          accountId: payload.accountId,
+          bio: payload.bio,
+          imageUrl: payload.imageUrl,
+        };
+        state.authStatus = !!payload;
+      })
+      .addCase(fetchAuth.rejected, (state) => {
+        state.status = 'rejected';
+      });
+  },
 });
 
 export const { setAuth, setUserData } = authSlice.actions;

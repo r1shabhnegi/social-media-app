@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import SignUpForm from './SignUpForm';
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -11,18 +12,11 @@ const schema = z.object({
 const SignInForm = () => {
   const [model, setModel] = useState(false);
 
-  console.log(model);
-
-  const handleModel = () => {};
-
   const {
     register,
     handleSubmit,
     // setError,
-    formState: {
-      errors,
-      //  isSubmitting
-    },
+    formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = (data) => {
@@ -30,10 +24,10 @@ const SignInForm = () => {
   };
 
   return (
-    <section className='w-auto h-auto bg-white p-6 rounded-md'>
+    <section className='w-auto h-auto p-6 bg-white rounded-md'>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col gap-4 border-b border-gray-400 pb-4'>
+        className='flex flex-col gap-4 pb-4 border-b border-gray-400'>
         <input
           {...register('email')}
           type='text'
@@ -41,7 +35,7 @@ const SignInForm = () => {
           className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.email && (
-          <p className='text-red-500 text-sm'>{errors.email.message}</p>
+          <p className='text-sm text-red-500'>{errors.email.message}</p>
         )}
         <input
           {...register('password')}
@@ -50,17 +44,19 @@ const SignInForm = () => {
           className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.password && (
-          <p className='text-red-500 text-sm'>{errors.password.message}</p>
+          <p className='text-sm text-red-500'>{errors.password.message}</p>
         )}
         <button
           type='submit'
-          className='w-[22rem] px-4 py-[.9rem] bg-green-400 rounded-md  font-bold text-white text-lg'>
+          disabled={isSubmitting}
+          className='w-[22rem] px-4 py-[.9rem] bg-green-500 rounded-md  font-bold text-white text-lg'>
           Log in
         </button>
       </form>
 
       <button
         type='button'
+        disabled={isSubmitting}
         className='w-[22rem] px-4 py-[.9rem] bg-gray-500 rounded-md mt-4 font-bold text-white text-lg '
         onClick={() => setModel(!model)}>
         Create new account
@@ -69,7 +65,13 @@ const SignInForm = () => {
       {model && (
         <div
           onClick={() => setModel(!model)}
-          className='absolute top-0 left-0 w-full h-screen bg-gray-300 opacity-70 z-50'></div>
+          className='absolute z-50 flex items-center justify-center w-full h-screen bg-gray-300 -top-0 -left-0 opacity-70'></div>
+      )}
+
+      {model && (
+        <div className='absolute z-50 flex items-center justify-center w-auto h-auto p-6 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md top-1/2 left-1/2'>
+          <SignUpForm handleCancelButton={() => setModel(!model)} />
+        </div>
       )}
     </section>
   );

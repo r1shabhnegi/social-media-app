@@ -1,7 +1,15 @@
 import { Navigate } from 'react-router-dom';
 import RootLayout from '../RootLayout';
+import { useSelector } from 'react-redux';
+
 const ProtectedPages = () => {
-  const isAuthenticated = false;
-  return isAuthenticated ? <RootLayout /> : <Navigate to='/sign-in' />;
+  // const isAuthenticated = useSelector((state) => state.auth.authStatus);
+  const isAuthenticated = true;
+  const authStatus = useSelector((state) => state.auth.status);
+  console.log(isAuthenticated);
+
+  if (authStatus !== 'loading') {
+    return isAuthenticated ? <RootLayout /> : <Navigate to='/sign-in' />;
+  }
 };
 export default ProtectedPages;
