@@ -3,8 +3,8 @@ import RootLayout from '../RootLayout';
 import { useSelector } from 'react-redux';
 
 const ProtectedPages = () => {
-  // const isAuthenticated = useSelector((state) => state.auth.authStatus);
-  const isAuthenticated = true;
+  const isAuthenticated = useSelector((state) => state.auth.authStatus);
+  // const isAuthenticated = true;
   const authStatus = useSelector((state) => state.auth.status);
   console.log(isAuthenticated);
 
