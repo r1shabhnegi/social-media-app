@@ -8,7 +8,7 @@ const ProtectedPages = () => {
   const authStatus = useSelector((state) => state.auth.status);
   console.log(isAuthenticated);
 
-  if (authStatus !== 'loading') {
+  if (authStatus === 'success') {
     return isAuthenticated ? <RootLayout /> : <Navigate to='/sign-in' />;
   }
 };

@@ -3,6 +3,10 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import SignUpForm from './SignUpForm';
+import { useSignInAccount } from '../services/tanstack/queriesAndMutation';
+import { useDispatch } from 'react-redux';
+import { fetchAuth } from '../services/redux/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -10,6 +14,9 @@ const schema = z.object({
 });
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { mutateAsync: signInAccount } = useSignInAccount();
   const [model, setModel] = useState(false);
 
   const {
@@ -19,8 +26,19 @@ const SignInForm = () => {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(schema) });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const signInSession = await signInAccount({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (!signInSession) throw new Error();
+
+    const checkAuth = dispatch(fetchAuth());
+
+    if (checkAuth) {
+      navigate('/');
+    }
   };
 
   return (

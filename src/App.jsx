@@ -7,7 +7,20 @@ import {
   ProtectedRoute,
   SignInPage,
 } from './pages/_index';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchAuth } from './services/redux/authSlice';
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetch = () => {
+      dispatch(fetchAuth());
+    };
+    fetch();
+  }, []);
+
   return (
     <main>
       <Routes>
