@@ -67,8 +67,10 @@ const SignInForm = () => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className='w-[22rem] px-4 py-[.9rem] bg-green-500 rounded-md  font-bold text-white text-lg'>
-          Log in
+          className={`w-[22rem] px-4 py-[.9rem] ${
+            isSubmitting ? 'bg-green-300' : 'bg-green-500'
+          }  rounded-md  font-bold text-white text-lg`}>
+          Sign in
         </button>
       </form>
 

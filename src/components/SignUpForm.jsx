@@ -9,6 +9,7 @@ import { fetchAuth } from '../services/redux/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import { AlertDefault } from './ui/AlertDefault';
+import { Spinner } from '@material-tailwind/react';
 
 const schema = z.object({
   name: z.string().min(2, { message: 'Must be 2 or more characters long' }),
@@ -99,7 +100,9 @@ const SignUpForm = ({ handleCancelButton }) => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className='w-[22rem] px-4 py-[.9rem] bg-green-500 rounded-md  font-bold text-white text-lg'>
+          className={`w-[22rem] px-4 py-[.9rem] ${
+            isSubmitting ? 'bg-green-300' : 'bg-green-500'
+          }  rounded-md  font-bold text-white text-lg`}>
           Sign up
         </button>
       </form>

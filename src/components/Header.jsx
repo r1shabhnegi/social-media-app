@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GoHomeFill } from 'react-icons/go';
 import searchIcon from '../assets/search-icon.svg';
 import { IoMdAdd } from 'react-icons/io';
@@ -37,13 +37,15 @@ const Header = () => {
   }, [isSuccess]);
 
   return (
-    <header className='fixed top-0 left-0 flex items-center justify-between w-full h-12 px-10 bg-white'>
+    <header className='fixed top-0 left-0 flex items-center justify-between w-full h-12 px-10 bg-gray-50'>
       {/* Logo */}
-      <p className='text-4xl text-green-500 '>circlesss</p>
+      <Link to='/'>
+        <p className='text-4xl text-green-500 '>circlesss</p>
+      </Link>
 
       {/* Opened page and menu */}
       <div className='flex items-center w-64 gap-5 rounded h-9'>
-        {pathname.includes('/') && <GoHomeFill className='w-6 h-6' />}
+        {pathname.includes('/') && <GoHomeFill className='w-6 h-6 ml-2' />}
         <p className='pt-1 text-sm'>Home</p>
       </div>
 
@@ -54,7 +56,7 @@ const Header = () => {
           style={{
             backgroundImage: 'url(../assets/search-icon.svg)',
           }}
-          className='bg-gray-100 w-[40rem] h-10 rounded-full outline-none bg-no-repeat bg-left-top pl-12'
+          className='bg-gray-200 w-[40rem] h-10 rounded-full outline-none bg-no-repeat bg-left-top pl-12'
           placeholder={`Search...`}
         />
         <img
