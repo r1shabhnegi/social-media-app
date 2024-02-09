@@ -37,7 +37,7 @@ const Header = () => {
   }, [isSuccess]);
 
   return (
-    <header className='fixed top-0 left-0 flex items-center justify-between w-full h-12 px-10 bg-gray-50'>
+    <header className='fixed top-0 left-0 z-50 flex items-center justify-between w-full h-12 px-10 bg-gray-50'>
       {/* Logo */}
       <Link to='/'>
         <p className='text-4xl text-green-500 '>circlesss</p>

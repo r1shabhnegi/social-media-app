@@ -22,35 +22,32 @@ function App() {
   }, []);
 
   return (
-    <main>
-      <Routes>
+    <Routes>
+      <Route
+        path='/sign-in'
+        element={<SignInPage />}
+      />
+      <Route
+        path='/'
+        element={<ProtectedRoute />}>
         <Route
-          path='/sign-in'
-          element={<SignInPage />}
+          index
+          element={<Home />}
         />
-
         <Route
-          path='/'
-          element={<ProtectedRoute />}>
-          <Route
-            index
-            element={<Home />}
-          />
-          <Route
-            path='/profile/:id'
-            element={<Profile />}
-          />
-          <Route
-            path='/community/:communityId'
-            element={<Community />}
-          />
-          <Route
-            path='/create-post'
-            element={<CreatePost />}
-          />
-        </Route>
-      </Routes>
-    </main>
+          path='/profile/:id'
+          element={<Profile />}
+        />
+        <Route
+          path='/community/:communityId'
+          element={<Community />}
+        />
+        <Route
+          path='/create-post'
+          element={<CreatePost />}
+        />
+      </Route>
+    </Routes>
   );
 }
 

@@ -60,12 +60,12 @@ const SignUpForm = ({ handleCancelButton }) => {
     <div className='relative'>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col gap-4 pb-4'>
+        className='flex flex-col gap-4 pb-4 w-[20rem]'>
         <input
           type='text'
           placeholder='name'
           {...register('name')}
-          className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
+          className=' border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.name && (
           <p className='text-sm text-red-500'>{errors.name.message}</p>
@@ -74,7 +74,7 @@ const SignUpForm = ({ handleCancelButton }) => {
           type='text'
           placeholder='username'
           {...register('username')}
-          className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
+          className=' border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.username && (
           <p className='text-sm text-red-500'>{errors.username.message}</p>
@@ -83,7 +83,7 @@ const SignUpForm = ({ handleCancelButton }) => {
           type='text'
           placeholder='email'
           {...register('email')}
-          className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
+          className=' border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.email && (
           <p className='text-sm text-red-500'>{errors.email.message}</p>
@@ -92,7 +92,7 @@ const SignUpForm = ({ handleCancelButton }) => {
           type='password'
           placeholder='password'
           {...register('password')}
-          className='w-[22rem] border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
+          className=' border-gray-400 border text-lg text-gray-800 px-4 py-[.9rem] rounded-md focus:border-0 focus:outline-none focus:ring-2 focus:ring-gray-500 '
         />
         {errors.password && (
           <p className='text-sm text-red-500'>{errors.password.message}</p>
@@ -100,7 +100,7 @@ const SignUpForm = ({ handleCancelButton }) => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className={`w-[22rem] px-4 py-[.9rem] ${
+          className={` px-4 py-[.9rem] ${
             isSubmitting ? 'bg-green-300' : 'bg-green-500'
           }  rounded-md  font-bold text-white text-lg`}>
           Sign up
